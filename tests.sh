@@ -13,10 +13,11 @@ if [[ $res -eq 15 ]]; then
 else
   echo "Expected: 15"
   echo "Actual: ${res}"
-  ((++fail))
+  ((++fails))
 fi
 
-if [[ $fail -gt 0 ]]; then
+echo "${fails} tests failed"
+if [[ $fails -gt 0 ]]; then
   exit 1
 else
   exit 0
