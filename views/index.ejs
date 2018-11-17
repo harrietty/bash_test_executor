@@ -6,25 +6,32 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Bash Exercises</title>
 </head>
-<body>
-  <h1>Learn Bash!</h1>
-  <h4>Write a program that takes two arguments (numbers) and adds them together, printing the output to stdout.</h4>
-  <form method="post" action="/solution">
-    <fieldset>
-      <label for="code">Your Solution:</label>
-<textarea name="code">
-#!/bin/bash
-# Your code here:
-</textarea>
-    </fieldset>
-    <input type="submit" value="Submit">
-  </form>
-</body>
-</html>
-
 <style>
-textarea {
-  width: 400px;
-  height: 200px;
+.challenge-title {
+  text-decoration: underline; 
 }
 </style>
+<body>
+  <h1>Learn Bash!</h1>
+
+  <h2>Easy challenges</h2>
+  <ul>
+    <% challenges.forEach((challenge) => { %>
+      <li>
+        <p class="challenge-title">
+          <%= challenge.title %>  
+        </p>
+        <p class="challenge-desc">
+          <%= challenge.description %>  
+        </p>
+        <a href="/challenges/<%= challenge.id %>">
+          <button>
+            Train
+          </button>
+        </a>
+      </li>
+
+    <% }); %>
+  </ul>
+</body>
+</html>

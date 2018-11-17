@@ -2,6 +2,7 @@ const fs = require('fs');
 const {spawn} = require('child_process');
 const uuidv1 = require('uuid/v1');
 const express = require('express');
+const challenges = require('./data/challenges.json');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -10,7 +11,16 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index', {challenges});
+});
+
+app.get('/challenges/:id', (req, res) => {
+  if (! isNaN(Number(req.params.id))) {
+    const challenge = challenges[Number(req.params.id)];
+    return res.render('challenge', {challenge});
+  } else {
+    return res.redirect('/');
+  }
 });
 
 app.post('/solution', (req, res) => {

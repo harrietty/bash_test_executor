@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title><%= challenge.title %></title>
+</head>
+<style>
+textarea {
+  width: 400px;
+  height: 200px;
+}
+</style>
+<body>
+  <h1><%= challenge.title %></h1>
+  <p>
+    <a href="/">Back</a>
+  </p>
+  <p>
+    <%= challenge.description %>
+  </p>
+
+  <h3>Example usage:</h3>
+  <code><%= challenge.example_use %></code>
+
+  <h3>Example output:</h3>
+  <code><%- challenge.example_output.replace(/\n/g, '<br>') %></code>
+
+  <form method="post" action="/challenges/<%= challenge.id %>">
+    <fieldset>
+      <label for="code">Your Solution:</label>
+<textarea name="code">
+#!/bin/bash
+# Your code here:
+</textarea>
+    </fieldset>
+    <input type="submit" value="Submit">
+  </form>
+</body>
+</html>
