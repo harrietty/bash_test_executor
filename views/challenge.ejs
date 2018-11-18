@@ -27,7 +27,7 @@ textarea {
   <h3>Example output:</h3>
   <code><%- challenge.example_output.replace(/\n/g, '<br>') %></code>
 
-  <form method="post" action="/challenges/<%= challenge.id %>">
+  <form method="post" action="/solutions/<%= challenge.id %>">
     <fieldset>
       <label for="code">Your Solution:</label>
 <textarea name="code">

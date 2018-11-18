@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# An example of user input which is intended to be a script
-# that adds two arguments together, outputting the result
+# solution for the Name Counter challenge
 
-echo $(($1 + $2))
+filename="${1}"
+
+echo "$(cat ${filename} | tr ',' "\n" | sort | uniq -c | sort -nr | awk '{$1=$1}1')"
+
+exit 0

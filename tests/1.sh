@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Tests for the sum script
+# Tests for the Sum of Arguments challenge
 
 declare -i fails=0
 
