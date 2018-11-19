@@ -1,4 +1,5 @@
 const fs = require('fs');
+const process = require('process');
 const {spawn} = require('child_process');
 const uuidv1 = require('uuid/v1');
 
@@ -9,11 +10,13 @@ function validate (req, res) {
   if (req.body.code) {
     const filename = `${__dirname}/tmp/${uuidv1()}.sh`;
     console.log(`Saving temporary file ${filename}`);
+    const testFilesDir = `${process.cwd()}/tests/${solutionId}/`;
+    console.log(`Test files located: ${testFilesDir}`);
 
     const data = req.body.code.replace(/\r/g, '');
 
     fs.writeFile(filename, data, {mode: 0755}, (err) => {
-      const runner = spawn('docker', ['run', '--rm', '-v', `${filename}:/code.sh`, '-v', `${__dirname}/tests.sh:/tests.sh`, 'test_runner']);
+      const runner = spawn('docker', ['run', '--rm', '-v', `${filename}:/code.sh`, '-v', `${testFilesDir}:/tests/`, 'test_runner']);
 
       runner.on('exit', (code, signal) => {
         console.log(`Deleting temporary file ${filename}`);

@@ -25,15 +25,13 @@
     "title": "Word Finder",
     "description": "Create a script that takes searches for a word in a text file and prints the number of occurrences of that word to stdout. The script takes an option -s (the search term) and a filename",
     "example_use": "$ ./script.sh -s monkey animals.txt",
-    "example_output": "11",
-    "associated_files": []
+    "example_output": "11"
   },
   {
     "id": 5,
     "title": "Name Counter",
     "description": "Create a program which takes a file of comma-separated first names and delivers a report of the top 5 names by frequency separated by line to stdout",
     "example_use": "$ ./script names.txt",
-    "example_output": "44 Marsha\n11 Pete\n10 Olivia\n6 Terry\n2 Anisa\n1 Flora",
-    "associated_files": [""]
+    "example_output": "44 Marsha\n11 Pete\n10 Olivia\n6 Terry\n2 Anisa\n1 Flora"
   }
 ]

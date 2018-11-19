@@ -3,7 +3,7 @@
 # Test for the Word Finder challenge
 
 echo "$ ./code -s bar words.txt"
-res=$(./code.sh -s bar ./tests/associated_files/4/1.txt)
+res=$(./code.sh -s bar ./tests/associated_files/1.txt)
 
 declare -i fails=0
 
