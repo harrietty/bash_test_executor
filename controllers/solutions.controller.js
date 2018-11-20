@@ -8,7 +8,7 @@ function validate (req, res) {
   if (isNaN(solutionId)) return res.redirect('/');
 
   if (req.body.code) {
-    const filename = `${__dirname}/tmp/${uuidv1()}.sh`;
+    const filename = `${process.cwd()}/tmp/${uuidv1()}.sh`;
     console.log(`Saving temporary file ${filename}`);
     const testFilesDir = `${process.cwd()}/tests/${solutionId}/`;
     console.log(`Test files located: ${testFilesDir}`);
@@ -16,9 +16,19 @@ function validate (req, res) {
     const data = req.body.code.replace(/\r/g, '');
 
     fs.writeFile(filename, data, {mode: 0755}, (err) => {
-      const runner = spawn('docker', ['run', '--rm', '-v', `${filename}:/code.sh`, '-v', `${testFilesDir}:/tests/`, 'test_runner']);
+      const runner = spawn('docker', ['run', '--rm', '-v', `${filename}:/code.sh`, '-v', `${testFilesDir}:/tests/`, 'test_runner'], {detached: true});
+
+      const wait = setTimeout(function () {
+        process.kill(-runner.pid);
+        console.log(`Deleting temporary file ${filename}`);
+        fs.unlink(filename, (err) => {
+          console.log('Process timed out');
+          return res.status(400).send('Timeout');
+        });
+      }, 3000);
 
       runner.on('exit', (code, signal) => {
+        clearTimeout(wait);
         console.log(`Deleting temporary file ${filename}`);
         fs.unlink(filename, (err) => {
           console.log('Runner exited', {code, signal});
@@ -36,9 +46,10 @@ function validate (req, res) {
       });
 
       runner.on('error', (err) => {
+        clearTimeout(wait);
         console.log(`Deleting temporary file ${filename}`);
         fs.unlink(filename, () => {
-          console.log('Runner encountered error', {code, signal});
+          console.log('Runner encountered error', {err});
           res.status(500);
         });
       });
