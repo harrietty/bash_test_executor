@@ -10,13 +10,16 @@ function validate (req, res) {
   if (req.body.code) {
     const filename = `${process.cwd()}/tmp/${uuidv1()}.sh`;
     console.log(`Saving temporary file ${filename}`);
-    const testFilesDir = `${process.cwd()}/tests/${solutionId}/`;
-    console.log(`Test files located: ${testFilesDir}`);
+    const testFilesDir = `${process.cwd()}/tests/`;
 
     const data = req.body.code.replace(/\r/g, '');
 
     fs.writeFile(filename, data, {mode: 0755}, (err) => {
-      const runner = spawn('docker', ['run', '--rm', '-v', `${filename}:/code.sh`, '-v', `${testFilesDir}:/tests/`, 'test_runner'], {detached: true});
+      const runner = spawn(
+        'docker', 
+        ['run', '--rm', '-v', `${filename}:/code.sh`, '-v', `${testFilesDir}:/tests`, '-w', '/tests', 'test_runner', `./${solutionId}/tests.bats`],
+        {detached: true},
+      );
 
       const wait = setTimeout(function () {
         process.kill(-runner.pid);
