@@ -1,7 +1,8 @@
 const express = require('express');
-const fs = require('fs')
-const path = require('path')
-const SshClient = require('node-ssh')
+const fs = require('fs');
+var os = require('os');
+const path = require('path');
+const SshClient = require('node-ssh');
 const ssh = new SshClient();
 const challenges = require('./data/challenges.json');
 const solutionsController = require('./controllers/solutions.controller');
@@ -9,7 +10,7 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 const REMOTE_HOST = '178.62.51.68';
-
+const USERNAME = os.userInfo().username;
 
 app.set('view engine', 'ejs');
 app.use(express.json());
@@ -40,11 +41,11 @@ app.post('/remote/:id', (req, res) => {
   ssh.connect({
     host: REMOTE_HOST,
     username: 'root',
-    privateKey: '/Users/harrietryder/.ssh/id_rsa'
+    privateKey: `/Users/${USERNAME}/.ssh/programmatic_id`
   }).then(() => {
     console.log(`Connected to ${REMOTE_HOST}`);
-    return ssh.execCommand(`docker run -i test_runner ${challengeId}`, {
-      stdin: req.body.code,
+    return ssh.execCommand(`docker run -i harrrietty/remote_runner ${challengeId}`, {
+      stdin: req.body.code.replace(/\r/g, ''),
     })
   })
   .then(sshRes => {
