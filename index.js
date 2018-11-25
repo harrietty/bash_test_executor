@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.get('/practice', (req, res) => {
+app.get('/challenges/all', (req, res) => {
   res.render('challenges', {challenges});
 });
 

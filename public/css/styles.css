@@ -1,19 +1,92 @@
 /* ============================ GENERIC =============================== */
+body {
+  background-color: #FFF8D0;
+}
 
-h2 {
+h1 {
   font-family: 'Pacifico', cursive;
+  color: #B20961;
+  text-align: center;
+  font-size: 3rem;
 }
 
 .text-align-center {
   text-align: center;
 }
 
+a, a:link, a:visited, a:active {
+  color: #B20961;
+}
+
+a:hover {
+  color: #B20961;
+  text-decoration: underline;
+}
+
+.btn, .btn:hover {
+  border: .05rem solid #B20961;
+  color: #3b4351;
+}
+
+.label.label-primary {
+  background-color: #ffe100;
+  color: #3b4351;
+}
+
+pre {
+  border: .05rem solid #B20961;
+  background-color: white;
+  padding-top: 10px;
+}
+
+
+/* ============================= FLEX OPTIONS ============================ */
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
 /* ============================= HOME PAGE ============================ */
 
 .main-links h2 {
-  margin: 20px;
+  margin: 20px;font-family: 'Pacifico', cursive;
+  color: #B20961;
+  text-align: center;
 }
 
 #welcome-img {
   padding: 20px;
+}
+
+/* =============================== NAV ============================ */
+
+header {
+  background: beige;
+  height: 66px;
+}
+
+.navbar-center h4 {
+  font-family: 'Pacifico', cursive;
+  margin: 0;
+}
+
+/* =============================== CHALLENGES  ============================ */
+
+.challenge-list li {
+  width: 100%;
+  background: #f1f1f1;
+  border-radius: .1rem;
+  padding: 10px;
+  list-style-type: none;
+  margin-bottom: 60px;
+}
+
+.challenge-title {
+  font-weight: 600;
+}
+
+.example-use, .example-output {
+  margin: 12px 0 5px 0;
+  font-size: 0.7rem;
+  font-weight: 600;
 }

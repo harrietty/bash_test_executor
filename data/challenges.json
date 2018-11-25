@@ -3,6 +3,9 @@
     "id": 1,
     "title": "Sum of Agruments",
     "description": "Create a script that takes two arguments and prints the sum to stdout",
+    "difficulty": "easy",
+    "example_use": "$ ./script.sh 10 5",
+    "example_output": "5",
     "tests": [
       {
         "input": "./script.sh 5 10",
@@ -25,6 +28,7 @@
     "id": 2,
     "title": "Greatest Argument",
     "description": "Create a script that takes any number of arguments, all of which are numbers, and prints the sum to stdout",
+    "difficulty": "easy",
     "example_use": "$ ./script.sh 6 1 4 99 34 32 11",
     "example_output": "99"
   },
@@ -32,6 +36,7 @@
     "id": 3,
     "title": "Range Creator",
     "description": "Create a script that takes two options, -s and -s, and prints each number from start (-s) to end (-e) on a new line",
+    "difficulty": "easy",
     "example_use": "$ ./script -s 4 -e 9",
     "example_output": "4\n5\n6\n7\n8\n9"
   },
@@ -39,6 +44,7 @@
     "id": 4,
     "title": "Word Finder",
     "description": "Create a script that takes searches for a word in a text file and prints the number of occurrences of that word to stdout. The script takes an option -s (the search term) and a filename",
+    "difficulty": "easy",
     "example_use": "$ ./script.sh -s monkey animals.txt",
     "example_output": "11"
   },
@@ -46,6 +52,7 @@
     "id": 5,
     "title": "Name Counter",
     "description": "Create a program which takes a file of comma-separated first names and delivers a report of the top 5 names by frequency separated by line to stdout",
+    "difficulty": "easy",
     "example_use": "$ ./script names.txt",
     "example_output": "44 Marsha\n11 Pete\n10 Olivia\n6 Terry\n2 Anisa\n1 Flora"
   }

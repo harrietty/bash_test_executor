@@ -1,25 +1,46 @@
 <%- include('partials/_head') %>
 <body>
-  <h1>Learn Bash!</h1>
+  <a href="/">Back</a>
+  <h1>Practice Bash Scripting!</h1>
+  <div class="col-8 col-mx-auto">
+    <ul class="challenge-list">
+      <% challenges.forEach((challenge) => { %>
+        <li>
+          <div class="d-flex justify-space-between">
+            <h4>
+              <%= challenge.title %>  
+            </h4>
+            <div>
+              <span class="label label-primary">
+                <%= challenge.difficulty %>
+              </span>
+            </div>
+          </div>
+          <p class="challenge-desc">
+            <%= challenge.description %>  
+          </p>
+          <div class="example-area">
+            <p class="example-use">
+              Example:
+            </p>
+            <code>
+              <%= challenge.example_use %>
+            </code>
+            <p class="example-output">
+              Output:
+            </p>
+            <pre><%= challenge.example_output %>
+            </pre>
+          </div>
+          <a href="/challenges/<%= challenge.id %>">
+            <button class="btn">
+              Train
+            </button>
+          </a>
+        </li>
 
-  <h2>Easy challenges</h2>
-  <ul>
-    <% challenges.forEach((challenge) => { %>
-      <li>
-        <p class="challenge-title">
-          <%= challenge.title %>  
-        </p>
-        <p class="challenge-desc">
-          <%= challenge.description %>  
-        </p>
-        <a href="/challenges/<%= challenge.id %>">
-          <button>
-            Train
-          </button>
-        </a>
-      </li>
-
-    <% }); %>
-  </ul>
+      <% }); %>
+    </ul>
+  </div>
 </body>
 </html>
