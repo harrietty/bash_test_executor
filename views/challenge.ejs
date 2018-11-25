@@ -1,27 +1,76 @@
 <%- include('partials/_head') %>
 <body>
-  <h1><%= challenge.title %></h1>
-  <p>
-    <a href="/">Back</a>
-  </p>
-  <p>
-    <%= challenge.description %>
-  </p>
-  <form method="post" action="/remote/<%= challenge.id %>">
-    <fieldset>
-      <label for="code">Your Solution:</label>
-<textarea name="code">
+  <div class="header-area">
+    <a href="/challenges/all">Back</a>
+    <h1><%= challenge.title %></h1>
+  </div>
+  <div class="container challenge-container">
+    <div class="columns">
+      <div class="column col-6 task-col">
+        <h4>Task:</h4>
+        <p>
+          <%= challenge.description %>
+        </p>
+          <label for="code">Your Solution:</label>
+          <fieldset>
+    <textarea name="code" id="code-input">
 #!/bin/bash
 # Your code here:
 </textarea>
-    </fieldset>
-    <input type="submit" value="Submit">
-  </form>
+        </fieldset>
+        <button id="submit-code" class="btn">Submit</button>
+        <p id="pass-elem" class="hidden">Pass!</p>
+        <p id="fail-elem" class="hidden">Fail!</p>
+      </div>
+      <div class="column col-6 tests-col">
+        <h4>Tests:</h4>
+        <% challenge.tests.forEach(function (test) { %>
+          <div class="test-example">
+          <code>
+            $ <%= test.input %>
+          </code>
+          <h5 class="test-header">
+            Expected:
+          </h5>
+          <pre class="test-output"><%= test.output %>
+          </pre>
+        </div>
+        <% }) %>
+      </div>
+    </div>
+  </div>
 </body>
+
+<script>
+  var btn = document.getElementById('submit-code');
+  var pass = document.getElementById('pass-elem');
+  var fail = document.getElementById('fail-elem');
+
+  btn.addEventListener('click', function () {
+    var userCode = document.getElementById('code-input').value;
+    btn.classList.add("loading");
+    pass.classList.add("hidden");
+    fail.classList.add("hidden");
+    btn.innerHTML = '';
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/remote/<%= challenge.id %>');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.onload = function() {
+        btn.classList.add("loading");
+        btn.innerHTML = 'Submit';
+        console.log(xhr)
+        if (xhr.status === 200) {
+          pass.classList.remove("hidden");
+          btn.classList.remove("loading");
+        } else {
+          fail.classList.remove("hidden");
+          btn.classList.remove("loading");
+        }
+    };
+    xhr.send(JSON.stringify({
+        code: userCode
+    }));
+  });
+</script>
 </html>
-
-  // <h3>Example usage:</h3>
-  // <code><%= challenge.example_use %></code>
-
-  // <h3>Example output:</h3>
-  // <code><%- challenge.example_output.replace(/\n/g, '<br>') %></code>

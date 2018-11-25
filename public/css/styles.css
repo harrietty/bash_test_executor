@@ -39,6 +39,10 @@ pre {
   padding-top: 10px;
 }
 
+.hidden {
+  display: none;
+}
+
 
 /* ============================= FLEX OPTIONS ============================ */
 
@@ -89,4 +93,58 @@ header {
   margin: 12px 0 5px 0;
   font-size: 0.7rem;
   font-weight: 600;
+}
+
+/* =============================== CHALLENGE  ============================ */
+
+.challenge-container {
+  width: 85%;
+}
+
+textarea[name="code"] {
+  display: block;
+  height: 350px;
+  border: .05rem solid #B20961;
+  width: 100%;
+  background: black;
+  color: white;
+  font-size: 0.6rem;
+  font-family: monospace;
+}
+
+textarea[name="code"]:focus {
+  box-shadow: none;
+  resize: none;
+  outline: none;
+}
+
+.tests-col {
+  max-height: 600px;
+  overflow: scroll;
+}
+
+.test-example {
+  background: white;
+  padding: 15px;
+  margin-bottom: 10px;
+}
+
+.test-output {
+  background: black;
+  color: white;
+  font-size: 0.6rem;
+  padding: 5px 0 0 5px;
+  margin: 0 0 15px;
+}
+
+.test-header {
+  font-size: 0.6rem;
+  font-weight: 600;
+  margin-bottom: 0px;
+  margin-top: 16px;
+}
+
+#submit-code {
+  width: 200px;
+  text-align: center;
 }

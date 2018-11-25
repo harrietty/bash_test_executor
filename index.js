@@ -41,6 +41,9 @@ app.post('/remote/:id', (req, res) => {
     return res.redirect('/');
   }
 
+  const code = req.body.code.replace(/\r/g, '');
+  console.log({code});
+
   const challengeId = Number(req.params.id);
 
   ssh.connect({
@@ -49,8 +52,8 @@ app.post('/remote/:id', (req, res) => {
     privateKey: `/Users/${USERNAME}/.ssh/programmatic_id`
   }).then(() => {
     console.log(`Connected to ${REMOTE_HOST}`);
-    return ssh.execCommand(`docker run -i harrrietty/remote_runner ${challengeId}`, {
-      stdin: req.body.code.replace(/\r/g, ''),
+    return ssh.execCommand(`docker run -i harrietty/remote_runner ${challengeId}`, {
+      stdin: code,
     })
   })
   .then(sshRes => {
