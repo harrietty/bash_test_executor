@@ -1,37 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Bash Exercises</title>
-</head>
-<style>
-.challenge-title {
-  text-decoration: underline; 
-}
-</style>
+<%- include('partials/_head') %>
 <body>
-  <h1>Learn Bash!</h1>
-
-  <h2>Easy challenges</h2>
-  <ul>
-    <% challenges.forEach((challenge) => { %>
-      <li>
-        <p class="challenge-title">
-          <%= challenge.title %>  
-        </p>
-        <p class="challenge-desc">
-          <%= challenge.description %>  
-        </p>
-        <a href="/challenges/<%= challenge.id %>">
-          <button>
-            Train
-          </button>
-        </a>
-      </li>
-
-    <% }); %>
-  </ul>
+  <div class="col-10 col-mx-auto text-align-center">
+    <img id="welcome-img" src="https://via.placeholder.com/600x380">
+    <div class="main-links">
+      <h2 class="d-inline-block">
+        <a href="/learn">Learn Bash</a>
+      </h2>
+      <h2 class="d-inline-block">
+        <a href="/practice">Practice Bash</a></h2>
+    </div>
+  </div>
 </body>
 </html>

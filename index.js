@@ -14,10 +14,15 @@ const USERNAME = os.userInfo().username;
 
 app.set('view engine', 'ejs');
 app.use(express.json());
+app.use(express.static('public'))
 app.use(express.urlencoded({extended: true}));
 
 app.get('/', (req, res) => {
-  res.render('index', {challenges});
+  res.render('index');
+});
+
+app.get('/practice', (req, res) => {
+  res.render('challenges', {challenges});
 });
 
 app.get('/challenges/:id', (req, res) => {

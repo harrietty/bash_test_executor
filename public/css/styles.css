@@ -1,0 +1,19 @@
+/* ============================ GENERIC =============================== */
+
+h2 {
+  font-family: 'Pacifico', cursive;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+/* ============================= HOME PAGE ============================ */
+
+.main-links h2 {
+  margin: 20px;
+}
+
+#welcome-img {
+  padding: 20px;
+}

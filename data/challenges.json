@@ -3,8 +3,23 @@
     "id": 1,
     "title": "Sum of Agruments",
     "description": "Create a script that takes two arguments and prints the sum to stdout",
-    "example_use": "$ ./script.sh 5 10",
-    "example_output": "15"
+    "tests": [
+      {
+        "input": "./script.sh 5 10",
+        "files": [],
+        "output": "15"
+      },
+      {
+        "input": "./script.sh 11 -2",
+        "files": [],
+        "output": "9"
+      },
+      {
+        "input": "./script.sh 5 -10",
+        "files": [],
+        "output": "-5"
+      }
+    ]
   },
   {
     "id": 2,

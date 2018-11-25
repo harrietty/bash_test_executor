@@ -1,0 +1,25 @@
+<%- include('partials/_head') %>
+<body>
+  <h1>Learn Bash!</h1>
+
+  <h2>Easy challenges</h2>
+  <ul>
+    <% challenges.forEach((challenge) => { %>
+      <li>
+        <p class="challenge-title">
+          <%= challenge.title %>  
+        </p>
+        <p class="challenge-desc">
+          <%= challenge.description %>  
+        </p>
+        <a href="/challenges/<%= challenge.id %>">
+          <button>
+            Train
+          </button>
+        </a>
+      </li>
+
+    <% }); %>
+  </ul>
+</body>
+</html>
