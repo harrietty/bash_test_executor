@@ -59,7 +59,6 @@
     xhr.onload = function() {
         btn.classList.add("loading");
         btn.innerHTML = 'Submit';
-        console.log(xhr)
         if (xhr.status === 200) {
           pass.classList.remove("hidden");
           btn.classList.remove("loading");

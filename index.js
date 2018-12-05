@@ -9,7 +9,7 @@ const solutionsController = require('./controllers/solutions.controller');
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-const REMOTE_HOST = '178.62.51.68';
+const REMOTE_HOST = process.env.HOST || '18.202.253.84';
 const USERNAME = os.userInfo().username;
 
 app.set('view engine', 'ejs');
@@ -73,7 +73,7 @@ app.post('/remote/:id', (req, res) => {
     //# From the DB:
     // {expected: 5,
     // file: "s3/foo/1.txt" OR "foo\nbar\ncat",
-    // input: ""}
+    // input: "10 5"}
     // and then for each one, provide the user input script as stdin, the expected output and the command to run as params, and any file contents as virtual file descriptors
     // it could also make the files and then cleanup but this shouldn't be necessary
     // From Node, to run a test with stdin user input, test script args, expected output and associated file provided as virtual file descriptor
